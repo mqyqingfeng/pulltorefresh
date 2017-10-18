@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>下拉刷新</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="normalize.css">
+    <style>
+        .wrap {
+            padding: 0 10px 10px;
+        }
+        .refresh-element {
+            background-color: #1abc9c;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap" class="wrap">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <script src="pulltorefresh.js"></script>
+    <script>
+    var pull = new PullToRefresh({
+        target: 'body',
+        onRefresh: function(reset) {
+            // 模拟加载事件，注意当加载事件完成后，调用 reset 函数以恢复位置
+            setTimeout(function() {
+
+                var p = document.createElement("p");
+                p.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+                document.getElementById("wrap").appendChild(p);
+
+                reset();
+            }, 800)
+        }
+    })
+    </script>
+</body>
+
+</html>
